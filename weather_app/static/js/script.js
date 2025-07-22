@@ -13,7 +13,7 @@ function createMap (weather_layer){
 //   async function (){
 //     console.log('welcome to our webapp in Flask');
 
-//     const response = await fetch('https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=0592fd16db7b1608dd737d6cb281d0f5');
+//     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=${apikey}`);
 //     const jsonResults = await response.json();
 //     const weatherResults = JSON.stringify(jsonResults);
 
