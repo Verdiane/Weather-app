@@ -1,0 +1,15 @@
+body {
+   margin: auto;
+   width: 70%;
+   background-color: whitesmoke;
+   padding: 1% 2%;
+}
+
+#map { 
+   height: 70vh; 
+   width: 100%;
+}
+
+.map_container {
+   padding: 10px 0px;
+}

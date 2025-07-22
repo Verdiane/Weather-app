@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+
+</head>
+<body>
+    <h3>The Temperature in every region of the World Reflected by Cloud News</h3>
+    <div>
+        <p>Welcome to this Weather App from the HTML PAGE!</p>
+        <div class="map"> 
+            <p>Here you can see every weather conditions (temperature, cloud, wind, pressure, precipitation) in the world with our map. Just click on the area you want to see</p>
+            <div class="map_container">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <script> 
+        window.WEATHER_API_KEY = "{{ api_key }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
