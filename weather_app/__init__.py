@@ -11,6 +11,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 @app.route("/")
 def load_page():
     api_key = os.getenv("OPENWEATHER_API_KEY")
-    print("API Key from .env:", api_key)
-    return render_template("index.html", api_key=api_key)
+    geo_api_key = os.getenv("GEODB_ON_RAPID_API_KEY")
+    #print("API Key from .env:", geo_api_key)
+    return render_template("index.html", api_key=api_key, geo_api_key=geo_api_key)
 
