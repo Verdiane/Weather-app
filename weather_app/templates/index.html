@@ -15,33 +15,38 @@
 <body>
     <h3 class="heading">The Weather Conditions in every region of the World Reflected by Cloud News</h3>
     <div>
-        <p>Welcome to this Weather App from the HTML PAGE!. Here we try to show some weather conditions specific to a city or to the whole world</p>
+        <p>Welcome to this Weather Website!!!. Here we try to show some weather conditions specific to a city or to the whole world</p>
 
         <div class="city-box">
             <p>Do you want to see the weather conditions of any particular city? Type in the city and select the weather metric (temperature, cloud, pressure etc) you wish to see.</p>
             
-            <div class="container">
-                <div class="form-row">
-                  <div class="form-group autocomplete-container">
-                    <label for="city">City</label>
-                    <input type="text" id="city" placeholder="Start typing a city..." autocomplete="off" />
-                    <div id="autocomplete-list" class="autocomplete-suggestions"></div>
+            <form action="" id="weatherForm">
+                <div class="container">
+                  <div class="form-row">
+                    <div class="form-group autocomplete-container">
+                      <label for="city">City</label>
+                      <input type="text" id="city" placeholder="Start typing a city..." autocomplete="off" name="city" required/>
+                      <div id="autocomplete-list" class="autocomplete-suggestions"></div>
+                    </div>
+              
+                    <div class="form-group">
+                      <label for="weather_cond">Select Weather condition</label>
+                      <select id="weather_cond" name="weather_cond" required>
+                        <option value="" disabled selected>Select condition</option>
+                        <option value="temp">Temperature</option>
+                        <option value="cloud">Cloud</option>
+                        <option value="pressure">Pressure</option>
+                        <option value="wind">Wind Speed</option>
+                      </select>
+                    </div>
                   </div>
-            
-                  <div class="form-group">
-                    <label for="weather_cond">Select Weather condition</label>
-                    <select id="weather_cond">
-                      <option value="" disabled selected>Select condition</option>
-                      <option value="temp">Temperature</option>
-                      <option value="cloud">Cloud</option>
-                      <option value="pressure">Pressure</option>
-                      <option value="wind">Wind Speed</option>
-                      <option value="precip">Precipitation</option>
-                    </select>
-                  </div>
-                </div>
-            </div>
+              </div>
+            </form>
+
+            <div id="weatherResult"></div>
         </div>
+
+        
        
         <div class="map"> 
             <hr>

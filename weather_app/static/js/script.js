@@ -22,7 +22,7 @@ input.addEventListener('input', function () {
           method: 'GET',
           headers: {
             'x-rapidapi-key': geoApiKey,
-		    'x-rapidapi-host': API_HOST
+		        'x-rapidapi-host': API_HOST
           }
         })
         .then(response => response.json())
@@ -47,13 +47,80 @@ input.addEventListener('input', function () {
           console.error('Error fetching cities:', err);
         });
       }, 300); // 300ms debounce
-    });
+});
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.form-group')) {
-        list.innerHTML = '';
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.form-group')) {
+    list.innerHTML = '';
+  }
+});
+
+const cityValue = document.getElementById("city");
+const parameterSelect = document.getElementById("weather_cond");
+const form = document.getElementById("weatherForm");
+
+//get city and find the latitude and longitude
+parameterSelect.addEventListener("change", function () {
+  if (cityValue.value && this.value) {
+    // Get both values
+    const city = cityValue.value;
+    const parameter = this.value;
+
+    console.log("Selected City:", city);
+    console.log("Selected Parameter:", parameter);
+
+    if (!city || !parameter) {
+      alert("Please select a city and a parameter.");
+      return;
+    }
+
+      // Step 1: Geocode city to get coordinates
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data || data.length === 0) {
+        alert("City not found. Please enter a valid city.");
+        return;
       }
-    });
+
+      ({ lat, lon, name, country } = data[0]);
+      console.log(`✅ Found: ${name}, ${country} — Lat: ${lat}, Lon: ${lon}`);
+     
+    })
+    .then(() =>  getWeather(lat, lon, parameter, city))
+    .catch(err => console.error(err));
+
+  }
+});
+
+
+function getWeather(lat, lon, parameterValue, city) {
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
+  .then(res => res.json())
+  .then(data => {
+    // Step 3: Filter based on user choice
+    let output;
+
+    switch (parameterValue) {
+      case "temp":
+        output = `Temperature in ${city}: ${data.main.temp} °C`;
+        break;
+      case "cloud":
+        output = `Clouds in ${city}: ${data.clouds.all}%`;
+        break;
+      case "pressure":
+        output = `Pressure in ${city}: ${data.main.pressure} hPa`;
+        break;
+      case "wind":
+        output = `Wind speed in ${city}: ${data.wind.speed} m/s`;
+        break;
+    }
+
+    // Step 4: Display on frontend
+    document.getElementById("weatherResult").innerText = output;
+  });
+
+}
 
 
 //function to create weather layer

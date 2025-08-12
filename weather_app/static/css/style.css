@@ -22,7 +22,7 @@ body {
 }
 
 .city-box{
-   padding: 20px 2px;
+   padding: 10px 2px;
 }
 
 .container {
@@ -96,4 +96,10 @@ body {
 
  .autocomplete-container {
    position: relative;
+ }
+
+ #weatherResult{
+  padding: 15px 43px;
+  font-style: italic;
+  font-weight: bold;
  }
